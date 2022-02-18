@@ -19,15 +19,13 @@
     "ios": {
       "supportsTablet": false,
       "requireFullScreen": true,
-      "bundleIdentifier": "com.ewcode.scoreboard"
+      "bundleIdentifier": "com.estevaowat.scoreboard"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.ewcode.scoreboard",
-      "versionCode": 1
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
