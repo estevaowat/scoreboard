@@ -8,7 +8,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prepare": "husky install"
   },
   "dependencies": {
     "expo": "~44.0.0",
@@ -44,7 +45,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "jest-expo": "^44.0.1",
     "lint-staged": "^12.3.4",
     "prettier": "^2.5.1",

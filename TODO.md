@@ -2,7 +2,6 @@
 
 ## Dev OPs
 
--   [x] Add eslint and prettier
 -   [x] Configure to run tests before any commit
 
 ## Functional requirements
