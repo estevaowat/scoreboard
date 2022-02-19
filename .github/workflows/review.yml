@@ -35,22 +35,22 @@ jobs:
       - name: 🧪 Test code
         run: yarn test
 
-      - name: 👷 Build code
-        run: yarn clean && yarn build
+#       - name: 👷 Build code
+#         run: yarn clean && yarn build
 
-      - name: 🕵️ Validate build
-        id: diff
-        run: |
-          if [ "$(git diff --ignore-space-at-eol build/ | wc -l)" -gt "0" ]; then
-            echo "⚠️ Build is outdated"
-            echo "    > run 'yarn clean', 'yarn build', and commit changes"
-            git diff
-            exit 1
-          fi
+#       - name: 🕵️ Validate build
+#         id: diff
+#         run: |
+#           if [ "$(git diff --ignore-space-at-eol build/ | wc -l)" -gt "0" ]; then
+#             echo "⚠️ Build is outdated"
+#             echo "    > run 'yarn clean', 'yarn build', and commit changes"
+#             git diff
+#             exit 1
+#           fi
       
-      - name: 🗂 Upload build
-        uses: actions/upload-artifact@v2
-        if: ${{ failure() && steps.diff.conclusion == 'failure' }}
-        with:
-          name: build
-          path: build/
+#       - name: 🗂 Upload build
+#         uses: actions/upload-artifact@v2
+#         if: ${{ failure() && steps.diff.conclusion == 'failure' }}
+#         with:
+#           name: build
+#           path: build/
