@@ -1,42 +1,30 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import {
-    getTotalSeconds,
-    formatTotalSecondsToCountdown,
-} from '../services/countdown/countdownService';
+import { GlobalContext } from '../context/GlobalContext';
+import React, { useEffect, useContext } from 'react';
+import { formatTotalSecondsToCountdown } from '../services/countdown/countdownService';
 import playAudio from '../services/sound/soundService';
 
-interface InitialProps {
-    minutes?: number;
-    seconds?: number;
-}
-
-function Countdown({ minutes = 12, seconds = 0 }: InitialProps) {
-    const [isPaused, setIsPaused] = useState(true);
-    const [countdown, setCountdown] = React.useState<number>(
-        getTotalSeconds(minutes, seconds),
-    );
-
-    const resetCountdown = () => {
-        const totalSeconds = getTotalSeconds(minutes, seconds);
-        setCountdown(totalSeconds);
-        setIsPaused(true);
-    };
+function Countdown() {
+    const {
+        isPaused,
+        setIsPaused,
+        countdown,
+        setCountdown,
+        setResettingMatch,
+    } = useContext(GlobalContext);
 
     useEffect(() => {
         if (!isPaused) {
             const interval = setInterval(() => {
                 setCountdown(previousSeconds => {
-                    if (previousSeconds > 0) {
-                        const newCountdown = previousSeconds - 1;
+                    const newSeconds = previousSeconds - 1;
 
-                        if (newCountdown == 0) {
-                            playAudio('buzzer');
-                        }
-
-                        return newCountdown;
+                    if (newSeconds == 0) {
+                        playAudio('buzzer');
+                        return 0;
                     }
-                    return 0;
+
+                    return newSeconds;
                 });
             }, 1000);
 
@@ -64,7 +52,7 @@ function Countdown({ minutes = 12, seconds = 0 }: InitialProps) {
 
             <Button
                 onPress={() => {
-                    resetCountdown();
+                    setResettingMatch(true);
                 }}
                 color="#FFFFFF"
                 title="Reset match"

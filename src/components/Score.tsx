@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface IScoreProps {
     title: string;
+    score: number;
+    setScore: (score: number) => void;
 }
 
 function Score(props: IScoreProps) {
-    const { title } = props;
-    const [score, setScore] = useState(0);
+    const { title, score, setScore } = props;
 
     return (
         <View style={styles.container}>
@@ -16,9 +17,7 @@ function Score(props: IScoreProps) {
                     setScore(score + 1);
                 }}
                 onLongPress={() => {
-                    if (score == 0) {
-                        return;
-                    }
+                    if (score == 0) return;
                     setScore(score - 1);
                 }}
                 hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}

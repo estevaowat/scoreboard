@@ -1,10 +1,13 @@
 import AppLoading from 'expo-app-loading';
+import { GlobalContext } from './src/context/GlobalContext';
 import { StyleSheet, View } from 'react-native';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as Font from 'expo-font';
-import Countdown from './src/components/Countdown';
-import Score from './src/components/Score';
+
+import Scoreboard from './src/screens/Scoreboard';
+import GlobalContextProvider from './src/context/GlobalContext';
+import { getTotalSeconds } from './src/services/countdown/countdownService';
 
 async function changeScreenOrientation() {
     await ScreenOrientation.lockAsync(
@@ -37,21 +40,8 @@ export default function App() {
     }
 
     return (
-        <View style={styles.container}>
-            <Score title="HOME" />
-            <Countdown />
-            <Score title="AWAY" />
-        </View>
+        <GlobalContextProvider>
+            <Scoreboard />
+        </GlobalContextProvider>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: '#121212',
-        color: '#fff',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-    },
-});
