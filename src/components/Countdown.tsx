@@ -45,7 +45,7 @@ function Countdown() {
                         setIsPaused(!isPaused);
                     }}
                     color="#FFFFFF"
-                    title={isPaused ? 'Continue' : 'Pause'}
+                    title={isPaused ? 'Start' : 'Pause'}
                     accessibilityLabel="Button to start countdown"
                 />
             )}
